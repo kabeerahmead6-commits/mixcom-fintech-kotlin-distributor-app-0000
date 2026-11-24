@@ -41,8 +41,8 @@ import org.json.JSONObject
 import java.security.MessageDigest
 
 // === இங்கே உங்கள் Backend URL மற்றும் Public Key-ஐ மாற்றவும் ===
-const val BACKEND_BASE_URL = "https://YOUR_PROJECT_ID.supabase.co"
-const val BACKEND_PUBLIC_KEY = "YOUR_SUPABASE_ANON_KEY"
+const val BACKEND_BASE_URL = "https://bwowvsrcehixusbkhctv.supabase.co"
+const val BACKEND_PUBLIC_KEY = "sb_publishable_ohZfbMRrAR2GwR-GtytDhA_WZ0ZknTK"
 const val DEFAULT_DISTRIBUTOR_ID = "MXD-200001"
 
 val RoyalBlue = Color(0xFF1D3587)
