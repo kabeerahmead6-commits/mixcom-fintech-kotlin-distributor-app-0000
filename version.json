@@ -1,8 +1,7 @@
 {
-  "app_name": "MiXCOM Fintech Distributor",
+  "app_name": "MiXCOM Distributor",
   "package_name": "com.mixcom.distributor",
   "version_name": "1.0.0",
   "version_code": 1,
-  "apk_name": "mixcom-fintech-distributor-v1.0.0.apk",
-  "channel": "release"
+  "apk_name": "mixcom-distributor-debug.apk"
 }
