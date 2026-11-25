@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,7 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -40,9 +39,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.security.MessageDigest
 
-// === இங்கே உங்கள் Backend URL மற்றும் Public Key-ஐ மாற்றவும் ===
-const val BACKEND_BASE_URL = "https://bwowvsrcehixusbkhctv.supabase.co"
-const val BACKEND_PUBLIC_KEY = "sb_publishable_ohZfbMRrAR2GwR-GtytDhA_WZ0ZknTK"
+const val BACKEND_BASE_URL = "https://YOUR_PROJECT_ID.supabase.co"
+const val BACKEND_PUBLIC_KEY = "YOUR_SUPABASE_ANON_KEY"
 const val DEFAULT_DISTRIBUTOR_ID = "MXD-200001"
 
 val RoyalBlue = Color(0xFF1D3587)
@@ -541,7 +539,6 @@ fun DistributorMpinGate(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DistributorHomeShell(
     profileSeed: DistributorProfile,
@@ -664,7 +661,6 @@ fun DistributorHomeShell(
                 )
                 2 -> CommissionsTab(
                     profile = profile,
-                    agents = agents,
                     commissions = commissions,
                     onLogCommission = { agentId, serviceName, commAmt ->
                         val updatedComm = profile.totalCommission + commAmt
@@ -972,20 +968,13 @@ fun AgentsDirectoryTab(
 @Composable
 fun CommissionsTab(
     profile: DistributorProfile,
-    agents: List<OnboardedAgent>,
     commissions: List<CommissionEntry>,
     onLogCommission: (agentId: String, serviceName: String, commissionAmt: Double) -> Unit
 ) {
     val context = LocalContext.current
-    var selectedAgentId by remember { mutableStateOf(agents.firstOrNull()?.agentId ?: "MXA-100001") }
+    var selectedAgentId by remember { mutableStateOf("MXA-100001") }
     var serviceName by remember { mutableStateOf("AEPS / BBPS") }
     var commInput by remember { mutableStateOf("25.00") }
-
-    LaunchedEffect(agents) {
-        if (agents.isNotEmpty() && agents.none { it.agentId == selectedAgentId }) {
-            selectedAgentId = agents.first().agentId
-        }
-    }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
